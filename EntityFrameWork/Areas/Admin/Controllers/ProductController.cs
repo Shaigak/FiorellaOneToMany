@@ -318,21 +318,22 @@ public class ProductController : Controller
             else
             {
                 {
-                    Product prod = new()
+                    Product proda = new()
                     {
                         Images = dbProduct.Images
                     };
                 }
 
-                dbProduct.Name = model.Name;
-                dbProduct.Price = model.Price;
-                dbProduct.Count = model.Count;
-                dbProduct.Description = model.Description;
-                dbProduct.CategoryId = model.CategoryId;
-
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+               
             }
+            dbProduct.Name = model.Name;
+            dbProduct.Price = model.Price;
+            dbProduct.Count = model.Count;
+            dbProduct.Description = model.Description;
+            dbProduct.CategoryId = model.CategoryId;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
         catch (Exception)
         {
@@ -340,7 +341,7 @@ public class ProductController : Controller
             throw;
         }
 
-        return View();
+       
 
 
     }

@@ -16,7 +16,7 @@ namespace EntityFrameWork.Services
         }
         public async Task<IEnumerable<Product>> GetAll()
         {
-            return  await _context.Products.Include(m => m.Images).Where(m => !m.SoftDelete).ToListAsync();
+            return  await _context.Products.Include(m => m.Images).ToListAsync();
         }
 
         public async Task<Product> GetById(int id)
@@ -31,7 +31,7 @@ namespace EntityFrameWork.Services
 
         public async Task<Product> GetFullDataById(int id)
         {
-            return await  _context.Products.Include(m => m.Images).FirstOrDefaultAsync(m => m.Id == id);
+            return await _context.Products.Include(m => m.Images).Include(m => m.Category)?.FirstOrDefaultAsync(m => m.Id == id);
         }
 
         public async Task<List<Product>> GetPaginatedDatas(int page, int take)
