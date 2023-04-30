@@ -273,7 +273,7 @@ public class ProductController : Controller
             {
                 foreach (var item in model.Photos)
                 {
-                    if (!item.ContentType.Contains("image/"))  // Typesinin image olb olmadiqini yoxlayur 
+                    if (!item.ContentType.Contains("image/"))  
                     {
                         ModelState.AddModelError("Photo", "File type must be image");
 
@@ -300,7 +300,7 @@ public class ProductController : Controller
 
                     string fileName = Guid.NewGuid().ToString() + " " + item.FileName;
                     string newPath = Path.Combine(_webHostEnvironment.WebRootPath, "img", fileName);
-                    using (FileStream stream = new FileStream(newPath, FileMode.Create)) // Kompa sekil yuklemek ucun muhit yaradiriq stream yaradiriq 
+                    using (FileStream stream = new FileStream(newPath, FileMode.Create)) 
                     {
                         await item.CopyToAsync(stream);
                     }
